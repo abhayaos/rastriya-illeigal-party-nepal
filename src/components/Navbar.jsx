@@ -8,29 +8,27 @@ function Navbar() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
+    { name: "What We Want", path: "/what-we-want" },
+    { name: "Movement", path: "/movement" },
   ];
 
   return (
-    <nav className="sticky top-0 left-0 w-full z-50 bg-black border-b border-red-600 shadow-lg">
+    <nav className="sticky top-0 left-0 w-full z-50" style={{ background: '#e8d5a3', borderBottom: '3px double #8b4513' }}>
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="h-16 flex items-center justify-between">
 
           {/* Logo */}
-          <div className="flex items-center gap-3 cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-white">
-              RI
-            </div>
-
+          <Link to="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
             <div>
-              <h1 className="text-white font-bold text-lg leading-none">
+              <h1 className="vintage-heading text-2xl leading-none" style={{ fontStyle: 'italic' }}>
                 Rastriya Illegal
               </h1>
-              <p className="text-xs text-red-500">
-                Gen-Z For 2026
+              <p className="text-sm vintage-heading" style={{ color: '#5c3a1e', fontStyle: 'italic' }}>
+                Party
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -38,20 +36,21 @@ function Navbar() {
               <Link
                 key={item.name}
                 to={item.path}
-                className="text-gray-300 hover:text-red-500 transition duration-300 font-medium"
+                className="vintage-nav-link"
               >
                 {item.name}
               </Link>
             ))}
 
-            <button className="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-full text-white font-semibold transition duration-300">
+            <Link to="/movement" className="vintage-btn px-5 py-2" style={{ textDecoration: 'none' }}>
               Join Movement
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden"
+            style={{ color: '#2c1810' }}
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={28} /> : <Menu size={28} />}
@@ -60,21 +59,32 @@ function Navbar() {
 
         {/* Mobile Navigation */}
         {open && (
-          <div className="md:hidden bg-black border-t border-red-600 py-5 flex flex-col gap-5">
+          <div
+            style={{
+              background: '#e8d5a3',
+              borderTop: '2px solid #8b4513',
+            }}
+            className="py-5 flex flex-col gap-5"
+          >
             {navLinks.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 onClick={() => setOpen(false)}
-                className="text-gray-300 hover:text-red-500 transition duration-300"
+                className="vintage-nav-link"
               >
                 {item.name}
               </Link>
             ))}
 
-            <button className="bg-red-600 hover:bg-red-700 text-white py-3 rounded-full font-semibold">
+            <Link
+              to="/movement"
+              onClick={() => setOpen(false)}
+              className="vintage-btn py-3"
+              style={{ textDecoration: 'none', textAlign: 'center' }}
+            >
               Join Movement
-            </button>
+            </Link>
           </div>
         )}
 
